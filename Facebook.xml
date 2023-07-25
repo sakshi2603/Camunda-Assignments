@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="72ab66b" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.3.0" camunda:diagramRelationId="d65e3489-f7a4-48a8-9f92-b8cd7e249be9">
+  <bpmn:process id="Process_03yklwe" name="Facebook" isExecutable="true">
+    <bpmn:startEvent id="Event_1ttztau" name="Start Process">
+      <bpmn:outgoing>Flow_1rgxjtj</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1rgxjtj" sourceRef="Event_1ttztau" targetRef="Activity_0m2g2c8" />
+    <bpmn:sequenceFlow id="Flow_1oenl6f" sourceRef="Activity_0m2g2c8" targetRef="Activity_0a7v4rn" />
+    <bpmn:sequenceFlow id="Flow_1esx8rw" sourceRef="Activity_0a7v4rn" targetRef="Activity_067djhj" />
+    <bpmn:exclusiveGateway id="Gateway_1bnl8hi" name="Does It meet the Community Standards?">
+      <bpmn:incoming>Flow_1y8u47l</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kxyipo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1k2hst4</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1y8u47l" sourceRef="Activity_067djhj" targetRef="Gateway_1bnl8hi" />
+    <bpmn:task id="Activity_0hxbc7v" name="Post Posted">
+      <bpmn:incoming>Flow_1kxyipo</bpmn:incoming>
+      <bpmn:outgoing>Flow_087qkwx</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1kxyipo" name="yes" sourceRef="Gateway_1bnl8hi" targetRef="Activity_0hxbc7v">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=is defined(1)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:task id="Activity_1jlcnvu" name="Available to seen by Friends">
+      <bpmn:incoming>Flow_087qkwx</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aog689</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_087qkwx" sourceRef="Activity_0hxbc7v" targetRef="Activity_1jlcnvu" />
+    <bpmn:endEvent id="Event_17uihqz" name="Process Ends">
+      <bpmn:incoming>Flow_1aog689</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1aog689" sourceRef="Activity_1jlcnvu" targetRef="Event_17uihqz" />
+    <bpmn:task id="Activity_0mpd6yp" name="Can&#39;t meet the Community Standards">
+      <bpmn:incoming>Flow_1k2hst4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xa0p8l</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1k2hst4" name="no" sourceRef="Gateway_1bnl8hi" targetRef="Activity_0mpd6yp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=is defined(0)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_08fiv43" name="Process Ends">
+      <bpmn:incoming>Flow_0xa0p8l</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0xa0p8l" sourceRef="Activity_0mpd6yp" targetRef="Event_08fiv43" />
+    <bpmn:userTask id="Activity_0m2g2c8" name="Create a Facebook Post.">
+      <bpmn:incoming>Flow_1rgxjtj</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oenl6f</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0a7v4rn" name="Write a Post">
+      <bpmn:incoming>Flow_1oenl6f</bpmn:incoming>
+      <bpmn:outgoing>Flow_1esx8rw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_067djhj" name="Hit Post Button">
+      <bpmn:incoming>Flow_1esx8rw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1y8u47l</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_03yklwe">
+      <bpmndi:BPMNShape id="Event_1ttztau_di" bpmnElement="Event_1ttztau">
+        <dc:Bounds x="152" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="137" y="175" width="67" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1bnl8hi_di" bpmnElement="Gateway_1bnl8hi" isMarkerVisible="true">
+        <dc:Bounds x="725" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="709" y="80" width="81" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hxbc7v_di" bpmnElement="Activity_0hxbc7v">
+        <dc:Bounds x="840" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jlcnvu_di" bpmnElement="Activity_1jlcnvu">
+        <dc:Bounds x="1010" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17uihqz_di" bpmnElement="Event_17uihqz">
+        <dc:Bounds x="1182" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1166" y="175" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mpd6yp_di" bpmnElement="Activity_0mpd6yp">
+        <dc:Bounds x="700" y="230" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08fiv43_di" bpmnElement="Event_08fiv43">
+        <dc:Bounds x="932" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="916" y="295" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jml159_di" bpmnElement="Activity_0m2g2c8">
+        <dc:Bounds x="240" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jfflrv_di" bpmnElement="Activity_0a7v4rn">
+        <dc:Bounds x="400" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wlgvlg_di" bpmnElement="Activity_067djhj">
+        <dc:Bounds x="560" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1rgxjtj_di" bpmnElement="Flow_1rgxjtj">
+        <di:waypoint x="188" y="150" />
+        <di:waypoint x="240" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oenl6f_di" bpmnElement="Flow_1oenl6f">
+        <di:waypoint x="340" y="150" />
+        <di:waypoint x="400" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1esx8rw_di" bpmnElement="Flow_1esx8rw">
+        <di:waypoint x="500" y="150" />
+        <di:waypoint x="560" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y8u47l_di" bpmnElement="Flow_1y8u47l">
+        <di:waypoint x="660" y="150" />
+        <di:waypoint x="725" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kxyipo_di" bpmnElement="Flow_1kxyipo">
+        <di:waypoint x="775" y="150" />
+        <di:waypoint x="840" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="799" y="132" width="17" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_087qkwx_di" bpmnElement="Flow_087qkwx">
+        <di:waypoint x="940" y="150" />
+        <di:waypoint x="1010" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aog689_di" bpmnElement="Flow_1aog689">
+        <di:waypoint x="1110" y="150" />
+        <di:waypoint x="1182" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k2hst4_di" bpmnElement="Flow_1k2hst4">
+        <di:waypoint x="750" y="175" />
+        <di:waypoint x="750" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="759" y="200" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xa0p8l_di" bpmnElement="Flow_0xa0p8l">
+        <di:waypoint x="800" y="270" />
+        <di:waypoint x="932" y="270" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
